@@ -10,8 +10,5 @@
       "src": "/(.*)",
       "dest": "frontend/$1"
     }
-  ],
-  "projectSettings": {
-    "nodeVersion": "20.x"
-  }
+  ]
 }
