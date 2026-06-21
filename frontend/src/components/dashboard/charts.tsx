@@ -13,8 +13,26 @@ import {
   Pie,
   Cell,
 } from 'recharts';
+import { CHART_COLORS } from '@/lib/constants';
 
-export function SpendingChart({ data }: { data: any[] }) {
+export interface SpendingData {
+  month: string;
+  expenses: number;
+  income: number;
+}
+
+export interface CategoryData {
+  name: string;
+  value: number;
+}
+
+export interface IncomeVsExpensesData {
+  month: string;
+  income: number;
+  expenses: number;
+}
+
+export function SpendingChart({ data }: { data: SpendingData[] }) {
   return (
     <div className="bg-card rounded-lg border border-border shadow-card p-6">
       <h3 className="text-lg font-semibold text-primary-text mb-4">Monthly Spending</h3>
@@ -45,9 +63,7 @@ export function SpendingChart({ data }: { data: any[] }) {
   );
 }
 
-export function CategoryBreakdown({ data }: { data: any[] }) {
-  const colors = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6', '#EC4899'];
-
+export function CategoryBreakdown({ data }: { data: CategoryData[] }) {
   return (
     <div className="bg-card rounded-lg border border-border shadow-card p-6">
       <h3 className="text-lg font-semibold text-primary-text mb-4">Spending by Category</h3>
@@ -55,7 +71,7 @@ export function CategoryBreakdown({ data }: { data: any[] }) {
         <PieChart>
           <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100}>
             {data.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+              <Cell key={`cell-${index}`} fill={CHART_COLORS[index % CHART_COLORS.length]} />
             ))}
           </Pie>
           <Tooltip />
@@ -66,7 +82,7 @@ export function CategoryBreakdown({ data }: { data: any[] }) {
   );
 }
 
-export function IncomeVsExpenses({ data }: { data: any[] }) {
+export function IncomeVsExpenses({ data }: { data: IncomeVsExpensesData[] }) {
   return (
     <div className="bg-card rounded-lg border border-border shadow-card p-6">
       <h3 className="text-lg font-semibold text-primary-text mb-4">Income vs Expenses</h3>

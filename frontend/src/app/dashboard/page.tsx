@@ -8,6 +8,7 @@ import { SpendingChart, CategoryBreakdown, IncomeVsExpenses } from '@/components
 import { TransactionsTable } from '@/components/dashboard/transactions-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { SPENDING_DATA, CATEGORY_DATA } from '@/lib/constants';
 import {
   TrendingDown,
   TrendingUp,
@@ -42,22 +43,8 @@ export default function DashboardPage() {
   });
 
   // Mock data for charts (in production, fetch from API)
-  const spendingData = [
-    { month: 'Jan', expenses: 3400, income: 5000 },
-    { month: 'Feb', expenses: 2210, income: 5200 },
-    { month: 'Mar', expenses: 2290, income: 5100 },
-    { month: 'Apr', expenses: 2000, income: 5400 },
-    { month: 'May', expenses: 2181, income: 5500 },
-    { month: 'Jun', expenses: 2500, income: 5300 },
-  ];
-
-  const categoryData = [
-    { name: 'Food', value: 1200 },
-    { name: 'Travel', value: 800 },
-    { name: 'Shopping', value: 600 },
-    { name: 'Entertainment', value: 400 },
-    { name: 'Utilities', value: 300 },
-  ];
+  const spendingData = SPENDING_DATA;
+  const categoryData = CATEGORY_DATA;
 
   if (statsLoading) {
     return (
