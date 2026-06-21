@@ -39,7 +39,51 @@ docker-compose up -d
 
 ---
 
-### Option 2: Vercel + Railway
+### Option 2: Vercel + Render
+
+#### Backend Deployment (Render)
+
+1. **Push Code to GitHub**
+   - Ensure `/backend` folder is in your repository
+
+2. **Create Render Account**
+   - Sign up at render.com
+
+3. **Create New Web Service**
+   - Select Repository
+   - Build Command: `pip install -r requirements.txt`
+   - Start Command: `uvicorn app.main:app --host 0.0.0.0 --port 8000`
+
+4. **Configure Environment Variables**
+   - `DATABASE_URL`: Your PostgreSQL connection string
+   - `REDIS_URL`: Your Redis connection string
+   - `SECRET_KEY`: Generate a secure key (e.g., `openssl rand -hex 32`)
+   - `ENVIRONMENT`: `production`
+   - `DEBUG`: `False`
+   - `ALLOWED_ORIGINS`: `https://your-vercel-frontend-domain.com`
+
+5. **Deploy**
+   - Render auto-deploys on push
+   - Copy your Render service URL (e.g., `https://finnova-ai.onrender.com`)
+
+#### Frontend Deployment (Vercel)
+
+1. **Connect Repository to Vercel**
+   - Push code to GitHub
+   - Import project in Vercel
+   - Select `/frontend` as root directory
+
+2. **Configure Environment Variables** ⚠️ IMPORTANT
+   - Go to Project Settings → Environment Variables
+   - Add variable: `NEXT_PUBLIC_API_URL`
+   - Value: `https://your-render-service.onrender.com/api/v1`
+   - Example: `https://finnova-ai.onrender.com/api/v1`
+
+3. **Deploy**
+   - Trigger redeploy from Vercel dashboard
+   - Vercel automatically deploys on push
+
+#### Option 2B: Vercel + Railway
 
 #### Frontend Deployment (Vercel)
 
