@@ -6,14 +6,14 @@ import { transactionService } from '@/services/transaction.service';
 import { TransactionsTable } from '@/components/dashboard/transactions-table';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Plus, Download } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import { TransactionForm } from '@/components/dashboard/transaction-form';
 
 export default function TransactionsPage() {
   const [showForm, setShowForm] = useState(false);
   const [filterType, setFilterType] = useState<'all' | 'expense' | 'income'>('all');
 
-  const { data: transactions, isLoading, refetch } = useQuery({
+  const { data: transactions, refetch } = useQuery({
     queryKey: ['transactions', filterType],
     queryFn: () =>
       transactionService.getAll(

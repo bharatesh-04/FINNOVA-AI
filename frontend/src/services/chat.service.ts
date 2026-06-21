@@ -1,3 +1,5 @@
+'use client';
+
 import apiClient from '@/lib/api-client';
 import { ChatMessage } from '@/types';
 

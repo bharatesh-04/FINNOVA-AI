@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
 import { transactionService } from '@/services/transaction.service';
 import { Button } from '@/components/ui/button';
 import { Transaction, TransactionCategory } from '@/types';
@@ -72,7 +71,7 @@ export function TransactionForm({ transaction, onSuccess }: TransactionFormProps
           <label className="block text-sm font-medium text-primary-text mb-2">Type</label>
           <select
             value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value })}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value as 'expense' | 'income' })}
             className="w-full p-2 border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="expense">Expense</option>

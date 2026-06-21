@@ -1,5 +1,7 @@
+'use client';
+
 import apiClient from '@/lib/api-client';
-import { FinancialHealth, Forecast, Insight } from '@/types';
+import { FinancialHealth } from '@/types';
 
 export const analyticsService = {
   getFinancialHealth: async (): Promise<FinancialHealth> => {

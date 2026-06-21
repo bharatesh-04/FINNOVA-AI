@@ -54,7 +54,7 @@ export function CategoryBreakdown({ data }: { data: any[] }) {
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={100}>
-            {data.map((entry, index) => (
+            {data.map((_, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
             ))}
           </Pie>
