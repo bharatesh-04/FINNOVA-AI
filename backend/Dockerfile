@@ -12,16 +12,15 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-COPY backend/pyproject.toml .
+COPY pyproject.toml .
+
 RUN pip install --no-cache-dir poetry && \
     poetry config virtualenvs.create false && \
     poetry install --only main --no-interaction --no-ansi
 
-# Copy app
-COPY backend/app ./app
+# Copy application
+COPY app ./app
 
-# Expose port
 EXPOSE 8000
 
-# Run app
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
